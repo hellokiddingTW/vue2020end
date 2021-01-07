@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
+import 'bootstrap';
 
 import axios from 'axios';//主要的Ajax套件
 import VueAxios from 'vue-axios'; //將它轉為vue的套件
@@ -16,4 +17,27 @@ new Vue({
   components: { App },
   template: '<App/>',
   router,
+});
+
+
+router.beforeEach((to, from, next) => {
+  console.log('to', to, 'from', from, 'next', next)
+  if (to.meta.requiresAuth) {
+    const api = `${process.env.APIPATH}/api/user/check`;
+    const vm = this;
+    axios.post(api)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          next()
+        }else{
+          next({
+            path:"/login"
+          })
+        }
+      });
+  } else {
+    next()
+  }
+
 })

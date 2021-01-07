@@ -80,6 +80,7 @@
         </a>
       </li>
     </ul>
+    <a href="#" @click.prevent="singout">登出</a>
   </div>
 </template>
 
@@ -90,7 +91,21 @@ export default {
     return {
       msg: process.env.NODE_ENV
     }
+  },
+methods:{
+  singout(){
+     const api = `${process.env.APIPATH}/logout`;
+      const vm = this;
+      this.$http
+      .post(api)
+      .then((response) => {
+        console.log(response.data);
+        if(response.data.success){
+            vm.$router.push('/login')
+        }
+      });
   }
+}
 }
 </script>
 

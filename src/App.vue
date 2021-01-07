@@ -12,14 +12,15 @@ export default {
   components: {
     HelloWorld,
   },
-  created() {
-    this.$http
-      .get(`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products`)
-      .then((response) => {
-        console.log(response.data);
-      });
-  },
+  // created() {
+  //   this.$http
+  //     .get(`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     });
+  // },
 };
+
 </script>
 
 <style lang="scss">
