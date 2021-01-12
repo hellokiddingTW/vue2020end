@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import Dashboard from'@/components/dashboard';
 import Login from'@/components/pages/login';
 import Products from'@/components/pages/products';
+import Coupon from'@/components/pages/coupon';
 
 
 
@@ -34,6 +35,12 @@ export default new VueRouter({
                     name: '產品列表',
                     path: 'products',
                     component: Products,
+                    meta: { requiresAuth: true },
+                },
+                {
+                    name: '優惠卷',
+                    path: 'coupon',
+                    component: Coupon,
                     meta: { requiresAuth: true },
                 },
             ]

@@ -7,9 +7,15 @@ import 'bootstrap';
 import axios from 'axios';//主要的Ajax套件
 import VueAxios from 'vue-axios'; //將它轉為vue的套件
 import router from './router';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+import './bus';
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
+Vue.component('loading', Loading)
+
+axios.defaults.withCredentials = true;
 
 /* eslint-disable no-new */
 new Vue({
